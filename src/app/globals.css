@@ -522,3 +522,168 @@ body {
   transform: rotate(180deg);
 }
 
+/* Administration Section */
+.admin-leader-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.admin-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(5, 150, 105, 0.12);
+  border-color: var(--primary-color);
+}
+
+.admin-photo-container {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--glass-border);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.25rem;
+  transition: all 0.3s ease;
+  position: relative;
+  background: #f3f4f6;
+}
+
+.admin-card:hover .admin-photo-container {
+  border-color: var(--primary-color);
+  transform: scale(1.05);
+}
+
+.admin-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.admin-role {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 1.25rem;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-details-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  border-top: 1px dashed var(--glass-border);
+  padding-top: 1.25rem;
+}
+
+.admin-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.admin-detail-icon {
+  color: var(--primary-color);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.admin-detail-text {
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+/* Rekvizitlar (Requisites) Table */
+.req-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+.req-table th {
+  text-align: left;
+  padding: 14px 16px;
+  background: rgba(5, 150, 105, 0.08);
+  color: var(--primary-color);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(5, 150, 105, 0.2);
+}
+
+.req-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  vertical-align: middle;
+}
+
+.req-table tr {
+  transition: background 0.2s ease;
+}
+
+.req-table tr:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.copy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(5, 150, 105, 0.08);
+  color: var(--primary-color);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(5, 150, 105, 0.15);
+  transition: all 0.2s ease;
+  margin-left: 8px;
+}
+
+.copy-badge:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.copy-badge.copied {
+  background: #059669;
+  color: white;
+  border-color: #059669;
+}
+
+
+

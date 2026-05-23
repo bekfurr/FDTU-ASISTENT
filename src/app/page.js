@@ -79,6 +79,7 @@ export default function Home() {
   const [messages, setMessages] = useState([])
   const [activeLinks, setActiveLinks] = useState([])
   const [inputText, setInputText] = useState('')
+  const [copiedKey, setCopiedKey] = useState(null)
   const messagesEndRef = useRef(null)
 
   // Live Assistant hook
@@ -259,6 +260,12 @@ export default function Home() {
     }
   }
 
+  const copyToClipboard = (text, key) => {
+    navigator.clipboard.writeText(text)
+    setCopiedKey(key)
+    setTimeout(() => setCopiedKey(null), 2000)
+  }
+
   // FDTU Static Data
   const ratings = [
     {
@@ -290,6 +297,118 @@ export default function Home() {
       name: "QS Ranking Central Asia",
       logo: "https://fstu.uz/images/ilm-fan/QS%20centreal%20asian%20ranking%202024.png",
       value: "TOP 50"
+    }
+  ]
+
+  const administration = [
+    {
+      role: "Farg‘ona davlat texnika universiteti rektori",
+      name: "Tojiyev Rustambek Rasulovich",
+      photo: "https://fstu.uz/admin/uploads/global/markaz_bolimlar/%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B.jpg",
+      qabul: "Dushanba - Shanba (8:00 - 10:00)",
+      tel: "+99873 241-12-06",
+      email: "rektor@fstu.uz",
+      isRector: true
+    },
+    {
+      role: "Yoshlar masalalari, ma'naviy-ma'rifiy ishlar bo’yicha birinchi prorektor",
+      name: "Dexkanov Sherzod Abdumutalibovich",
+      photo: "https://fstu.uz/admin/uploads/global/rahbariyat/DSC06856.jpg",
+      qabul: "Dushanba - Shanba (8:00 - 10:00)",
+      tel: "+99873 241-13-52",
+      email: "sh.dexqonov@fstu.uz"
+    },
+    {
+      role: "O'quv ishlari bo'yicha prorektor",
+      name: "Jaxongirov Ilimdorjon Jahongirjonovich",
+      photo: "https://fstu.uz/admin/uploads/global/rahbariyat/DSC06838%20%281%29.jpg",
+      qabul: "Seshanba - Juma (15:00 - 18:00)",
+      tel: "+99873 241-12-10",
+      email: "i.jaxongirov@fstu.uz"
+    },
+    {
+      role: "Ilmiy ishlar va innovatsiyalar bo‘yicha prorektor",
+      name: "Davlyatov Shoxrux Muratovich",
+      photo: "https://fstu.uz/admin/uploads/global/2024/eee/DSC0686211.jpg",
+      qabul: "Dushanba - Shanba (15:00 - 17:00)",
+      tel: "+99873 241-14-10",
+      email: "sh.davlyatov@fstu.uz"
+    },
+    {
+      role: "Moliya, iqtisod ishlar boʼyicha prorektor",
+      name: "Salimov Abdumajid Abduvoxobovich",
+      photo: "https://fstu.uz/admin/uploads/global/rahbariyat/rahbariyat/moliya.webp",
+      qabul: "Dushanba Payshanba: (14:00 — 18:00)",
+      tel: "+99873 241-13-25",
+      email: "a.salimov@fstu.uz"
+    }
+  ]
+
+  const requisites = [
+    {
+      num: 1,
+      name: "Qaysi vazirlik, idora tizimiga kiradi",
+      value: "Oliy ta`lim, fan va innovatsiyalar vazirligi",
+      copyable: false
+    },
+    {
+      num: 2,
+      name: "Tashkilotning to'liq nomi",
+      value: "Farg`ona davlat texnika universiteti",
+      copyable: false
+    },
+    {
+      num: 3,
+      name: "Hisob raqami",
+      value: "O'zbekiston Respublikasi Moliya vazirligi G'aznachiligi\nh/r: 23402000300100001010",
+      copyText: "23402000300100001010",
+      copyable: true
+    },
+    {
+      num: 4,
+      name: "INN",
+      value: "201 122 919",
+      copyText: "201122919",
+      copyable: true
+    },
+    {
+      num: 5,
+      name: "MFO",
+      value: "00014 (XKKM Markaziy bank)",
+      copyText: "00014",
+      copyable: true
+    },
+    {
+      num: 6,
+      name: "G'aznachilik bo'linmasidagi shaxsiy hisob raqamlari",
+      value: "Byudjet: 100010860304017094100350012\nKontrakt: 400910860304017094100350004\nRivojlantirish jamg'armasi: 400110860304017094100350008\nInnovatsiya jamg'armasi: 400110860304017094100350009",
+      copyText: "Byudjet: 100010860304017094100350012\nKontrakt: 400910860304017094100350004\nRivojlantirish jamg'armasi: 400110860304017094100350008\nInnovatsiya jamg'armasi: 400110860304017094100350009",
+      copyable: true
+    },
+    {
+      num: 7,
+      name: "INN (Ikkinchi)",
+      value: "311 949 995",
+      copyText: "311949995",
+      copyable: true
+    },
+    {
+      num: 8,
+      name: "Tashkilotning yuridik manzili",
+      value: "Muruvvat MFY, Farg‘ona ko'chasi, 86-uy",
+      copyable: false
+    },
+    {
+      num: 9,
+      name: "Tashkilot rahbari",
+      value: "Farg'ona davlat texnika universiteti rektori\nTojiyev Rustambek Rasulovich",
+      copyable: false
+    },
+    {
+      num: 10,
+      name: "Tashkilot bosh buxgalteri",
+      value: "NAZAROV O‘TKIRJON ABDIXALIMOVICH",
+      copyable: false
     }
   ]
 
@@ -461,7 +580,98 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Ma'muriyat */}
+            <div>
+              <h2 className="main-title" style={{ fontSize: '2rem', textAlign: 'left', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <span style={{ display: 'inline-block', width: '4px', height: '32px', background: 'var(--primary-color)', borderRadius: '2px' }}></span>
+                Ma'muriyat
+              </h2>
+              
+              {/* Rektor Card (Centered) */}
+              {administration.filter(member => member.isRector).map((rector, idx) => (
+                <div key={idx} className="admin-leader-row">
+                  <div className="glass-panel admin-card" style={{ maxWidth: '480px', width: '100%' }}>
+                    <div className="admin-photo-container">
+                      <img src={rector.photo} alt={rector.name} className="admin-photo" onError={(e) => { e.target.src = 'https://ungoals.fstu.uz/frontend/assets/images/logo.png' }} />
+                    </div>
+                    <div className="admin-name">{rector.name}</div>
+                    <div className="admin-role">{rector.role}</div>
+                    <div className="admin-details-list">
+                      <div className="admin-detail-item">
+                        <svg className="admin-detail-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <div className="admin-detail-text">
+                          <strong>Qabul vaqti:</strong> {rector.qabul}
+                        </div>
+                      </div>
+                      <div className="admin-detail-item">
+                        <svg className="admin-detail-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 9.24v9.76z"></path>
+                        </svg>
+                        <div className="admin-detail-text">
+                          <strong>Telefon:</strong> <a href={`tel:${rector.tel}`} style={{ color: 'inherit', textDecoration: 'none' }}>{rector.tel}</a>
+                        </div>
+                      </div>
+                      <div className="admin-detail-item">
+                        <svg className="admin-detail-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                          <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <div className="admin-detail-text">
+                          <strong>E-mail:</strong> <a href={`mailto:${rector.email}`} style={{ color: 'inherit', textDecoration: 'none' }}>{rector.email}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {/* Prorectors Grid */}
+              <div className="admin-grid" style={{ marginTop: '1.5rem', marginBottom: '2.5rem' }}>
+                {administration.filter(member => !member.isRector).map((prorector, idx) => (
+                  <div key={idx} className="glass-panel admin-card">
+                    <div className="admin-photo-container">
+                      <img src={prorector.photo} alt={prorector.name} className="admin-photo" onError={(e) => { e.target.src = 'https://ungoals.fstu.uz/frontend/assets/images/logo.png' }} />
+                    </div>
+                    <div className="admin-name">{prorector.name}</div>
+                    <div className="admin-role">{prorector.role}</div>
+                    <div className="admin-details-list">
+                      <div className="admin-detail-item">
+                        <svg className="admin-detail-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <div className="admin-detail-text">
+                          <strong>Qabul vaqti:</strong> {prorector.qabul}
+                        </div>
+                      </div>
+                      <div className="admin-detail-item">
+                        <svg className="admin-detail-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 9.24v9.76z"></path>
+                        </svg>
+                        <div className="admin-detail-text">
+                          <strong>Telefon:</strong> <a href={`tel:${prorector.tel}`} style={{ color: 'inherit', textDecoration: 'none' }}>{prorector.tel}</a>
+                        </div>
+                      </div>
+                      <div className="admin-detail-item">
+                        <svg className="admin-detail-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                          <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <div className="admin-detail-text">
+                          <strong>E-mail:</strong> <a href={`mailto:${prorector.email}`} style={{ color: 'inherit', textDecoration: 'none' }}>{prorector.email}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Fakultetlar va Kafedralar */}
+
             <div>
               <h2 className="main-title" style={{ fontSize: '2rem', textAlign: 'left', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <span style={{ display: 'inline-block', width: '4px', height: '32px', background: 'var(--primary-color)', borderRadius: '2px' }}></span>
@@ -533,6 +743,68 @@ export default function Home() {
                   <h4 style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '1.1rem' }}>Keng Imkoniyatlar</h4>
                   <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>Xorijiy nufuzli universitetlar bilan hamkorlik dasturlari hamda yirik sanoat korxonalarida amaliyot o'tash imkoniyati.</p>
                 </div>
+              </div>
+            </div>
+
+            {/* Rekvizitlar (Requisites) */}
+            <div className="glass-panel" style={{ padding: '3rem 2.5rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+                <h2 className="main-title" style={{ fontSize: '1.8rem', textAlign: 'left', margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{ display: 'inline-block', width: '4px', height: '28px', background: 'var(--primary-color)', borderRadius: '2px' }}></span>
+                  Rekvizitlar
+                </h2>
+                <span className="glass-badge" style={{ background: 'rgba(5, 150, 105, 0.08)', color: '#059669', padding: '6px 12px', borderRadius: '8px', fontSize: '0.85rem', fontWeight: 'bold' }}>
+                  Hujjat sanasi: 15-01-2022
+                </span>
+              </div>
+              
+              <div style={{ overflowX: 'auto' }}>
+                <table className="req-table">
+                  <thead>
+                    <tr>
+                      <th style={{ width: '50px' }}>T/r</th>
+                      <th style={{ width: '320px' }}>Parametrlar</th>
+                      <th>Tafsilotlar / Qiymatlar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {requisites.map((req) => (
+                      <tr key={req.num}>
+                        <td style={{ fontWeight: 'bold', color: 'var(--text-secondary)' }}>{req.num}</td>
+                        <td style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{req.name}</td>
+                        <td>
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
+                            <span style={{ whiteSpace: 'pre-line' }}>{req.value}</span>
+                            {req.copyable && (
+                              <button 
+                                onClick={() => copyToClipboard(req.copyText, req.num)}
+                                className={`copy-badge ${copiedKey === req.num ? 'copied' : ''}`}
+                                style={{ flexShrink: 0 }}
+                              >
+                                {copiedKey === req.num ? (
+                                  <>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                      <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    Nusxa olindi
+                                  </>
+                                ) : (
+                                  <>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                    Nusxa olish
+                                  </>
+                                )}
+                              </button>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
 
